@@ -1,3 +1,6 @@
+using ExpenseTracker.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace ExpenseTracker
 {
     public class Program
@@ -8,6 +11,8 @@ namespace ExpenseTracker
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationContextDB>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
             var app = builder.Build();
 
