@@ -1,18 +1,22 @@
 ﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ExpenseTracker.Helpers
 {
     public static class FormHelpers
     {
-        public static HtmlString Icons()
+        public static IHtmlContent Icons()
         {
-            string[] AllFiles = Directory.GetFiles("wwwroot\\icons");
-            string result = "";
+            string[] AllFiles =Directory.GetFileSystemEntries("wwwroot\\icons");
+            var result = ;
             foreach (string file in AllFiles)
             {
-                result += $"<img src='{file}'/>";
+                var img = new TagBuilder("img");
+                img.MergeAttribute("src",$"/icons/{Path.GetFileName(file)}");
+                result.InnerHtml.AppendHtml(img);
+               ;
             }
-            return new HtmlString(result);
+            return result;
         }
     }
 }
