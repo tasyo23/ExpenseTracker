@@ -1,4 +1,4 @@
-﻿@using  ExpenseTracker.Helpers;
+﻿@using ExpenseTracker.Helpers;
 @model ExpenseTracker.Models.Category
 
 @{
@@ -20,10 +20,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="Icon" class="control-label"></label>
-                <input asp-for="Icon" class="form-control" />
+                @* <input asp-for="Icon" class="form-control" />  *@
+                <select asp-for="Icon" class="form-control form-select-icon">
+                    @foreach(var icon in FormHelpers.Icons())
+                    {
+                      <option value="@icon" data-icon="@icon" >@icon</option>  
+                    }
+                    
+                </select>
                 <span asp-validation-for="Icon" class="text-danger"></span>
             </div>
-          @FormHelpers.Icons();
             <div class="form-group my-3">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="type" id="btnradio1" autocomplete="off" value="Expense">
@@ -32,7 +38,7 @@
                     <label class="btn btn-outline-primary" for="btnradio2">Income</label>
                 </div>
                 <span asp-validation-for="Type" class="text-danger"></span>
-            </div>          
+            </div>
             <div class="form-group mb-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -45,5 +51,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

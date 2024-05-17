@@ -5,18 +5,18 @@ namespace ExpenseTracker.Helpers
 {
     public static class FormHelpers
     {
-        public static IHtmlContent Icons()
+        public static IEnumerable<string> Icons()
         {
             string[] AllFiles =Directory.GetFileSystemEntries("wwwroot\\icons");
-            var result = ;
+            List<string> result=new List<string>();
             foreach (string file in AllFiles)
             {
-                var img = new TagBuilder("img");
-                img.MergeAttribute("src",$"/icons/{Path.GetFileName(file)}");
-                result.InnerHtml.AppendHtml(img);
-               ;
-            }
-            return result;
+                result.Add($"/icons/{Path.GetFileName(file)}");
+              Console.WriteLine(file);
+            }       
+            Console.WriteLine(result.Count);
+            return result ;
+
         }
     }
 }
