@@ -10,10 +10,10 @@ namespace ExpenseTracker.Models
         [Column(TypeName ="nvarchar(50)")]
         public string Title { get; set; }
 
-        [Column(TypeName = "nvarchar(10)")]
+        [Column(TypeName = "nvarchar(30)")]
         public string Icon { get; set; } = "";
 
-        [Column(TypeName = "nvarchar(10)")]
+        [Column(TypeName = "nvarchar(30)")]
         public string Type { get; set; } = "Expense";
     }
 }

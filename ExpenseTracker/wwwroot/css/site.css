@@ -20,3 +20,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.select-icon-img {
+    height: 30px;
+}
+.select-icon-wrap{
+    padding-left:0;
+}
+.select-icon-item{
+    list-style-type:none;
+    padding:0 10px;
+}
+.select-icon-item:hover{
+    background-color:darkgray;
+}
+.form-control.select-icon-content {
+    padding-left: 0;
+    padding-right: 0;
+}
