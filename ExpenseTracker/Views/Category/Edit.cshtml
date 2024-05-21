@@ -1,5 +1,5 @@
 ﻿@model ExpenseTracker.Models.Category
-
+@using ExpenseTracker.Helpers;
 @{
     ViewData["Title"] = "Edit";
 }
@@ -18,19 +18,33 @@
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Icon" class="control-label"></label>
-                <input asp-for="Icon" class="form-control" />
+                <select asp-for="Icon" class="form-control form-select-icon">
+                    @foreach (var icon in FormHelpers.Icons())
+                    {
+                        <option value="@icon" data-icon="@icon">@icon</option>
+                    }
+                </select>
                 <span asp-validation-for="Icon" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                <input asp-for="Type" class="form-control" />
+            <div class="form-group my-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="type" id="btnradio1" autocomplete="off" value="Expense" checked="@(Model.Type=="Expense")">
+                    <label class="btn btn-outline-primary" for="btnradio1">Expense</label>
+                    <input type="radio" class="btn-check" name="type" id="btnradio2" autocomplete="off" value="Income" checked="@(Model.Type=="Income")">
+                    <label class="btn btn-outline-primary" for="btnradio2">Income</label>
+                </div>
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+                <a asp-action="Delete" asp-route-id="@Model.CategoryId">Delete</a>
             </div>
+            
         </form>
     </div>
 </div>
